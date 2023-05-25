@@ -28,6 +28,18 @@
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
 
+extern char **environ;
+
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
+
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_t *);
+} builtin_table;
+
+
 typedef struct liststr
 {
 	int num;
@@ -114,6 +126,16 @@ void sigintHandler(int);
 
 int bfree(void **);
 
+int _strlen(char *);
+int _strcmp(char *, char *);
+char *starts_with(const char *, const char *);
+char *_strcat(char *, char *);
+
+char *_strcpy(char *, char *);
+char *_strdup(const char *);
+void _puts(char *);
+int _putchar(char);
+
 void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
@@ -140,6 +162,11 @@ int renumber_history(info_t *info);
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
+
+int hsh(info_t *, char **);
+int find_builtin(info_t *);
+void find_cmd(info_t *);
+void fork_cmd(info_t *);
 
 int _myhistory(info_t *);
 int _myalias(info_t *);
