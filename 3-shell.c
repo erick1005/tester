@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _myenv -  this  prints the current environ
- * @info: this struct containing potential arguments.to maintain constant function prototype.
- * Return: Always 0
+ * _myenv - current environmt
+ * @info: variable struct.
+ * Return: 0 for success
  */
 int _myenv(info_t *info)
 {
@@ -12,11 +12,10 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info:  this struct containing potential arguments. 
- * @name: env var name
- *
- * Return: the value
+ * _getenv - environmt variable
+ * @info: argument struct.
+ * @name:input
+ * Return: pointer
  */
 char *_getenv(info_t *info, const char *name)
 {
@@ -34,10 +33,9 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv -  this Initialize a new environment variable,
- *             or modify an existing one
- * @info: this struct  containing potential arguments.
- *  Return: Always 0
+ * _mysetenv -  customized variable
+ * @info: struct arguments.
+ *  Return: Always 0 success
  */
 int _mysetenv(info_t *info)
 {
@@ -52,9 +50,9 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv -  this remove an environment variable
- * @info: this struct containing potential arguments. Used  to maintain function prototype.
- * Return: Always 0
+ * _myunsetenv - deletes variable
+ * @info: argument struct.
+ * Return: success 0
  */
 int _myunsetenv(info_t *info)
 {
@@ -72,9 +70,9 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: this structure containing potential arguments
- * Return: Always 0
+ * populate_env_list - entry
+ * @info: argument structure
+ * Return: 0 for success
  */
 int populate_env_list(info_t *info)
 {
