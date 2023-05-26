@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * _myexit - stops shell
+ * myexit - stops shell
  * @info: struct variables
  * Return: status return exit
  */
-int _myexit(info_t *info)
+int myexit(info_t *info)
 {
 	int exitcheck;
 
@@ -28,17 +28,17 @@ int _myexit(info_t *info)
 }
 
 /**
- * _mycd - directory change
+ * mycd - directory change
  * @info: struct variable
  * Return: Always 0
  */
-int _mycd(info_t *info)
+int mycd(info_t *info)
 {
-	char *s, *dir, buffer[1024];
+	char *o, *dir, buffer[1024];
 	int chdir_ret;
 
-	s = getcwd(buffer, 1024);
-	if (!s)
+	o = getcwd(buffer, 1024);
+	if (!o)
 		_eputs("TODO: >>getcwd failure emsg here<<\n");
 	if (!info->argv[1])
 	{
@@ -53,7 +53,7 @@ int _mycd(info_t *info)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
-			_eputs(s);
+			_eputs(o);
 			_eputchar('\n');
 			return (1);
 		}
@@ -77,11 +77,11 @@ int _mycd(info_t *info)
 }
 
 /**
- * _myhelp - current directory change
+ * _mychelp - current directory change
  * @info: arguments Structure
  * Return: 0 success
  */
-int _myhelp(info_t *info)
+int _mychelp(info_t *info)
 {
 	char **arg_array;
 

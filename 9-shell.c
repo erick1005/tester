@@ -2,52 +2,52 @@
 
 /**
  * _strlen - returns the length of a string
- * @s: the string whose length to check
+ * @o: the string whose length to check
  *
  * Return: integer length of string
  */
-int _strlen(char *s)
+int _strlen(char *o)
 {
 	int i = 0;
 
-	if (!s)
+	if (!o)
 		return (0);
 
-	while (*s++)
+	while (*o++)
 		i++;
 	return (i);
 }
 
 /**
  * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * @fs1: the first strang
+ * @ss2: the second strang
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * Return: negative if fs1 < s2, positive if fs1 > s2, zero if fs1 == s2
  */
-int _strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+int _strcmp(char *fs1, char *s2)
+s{
+	while (*fs1 && *s2)
+	s{
+		if (*fs1 != *s2)
+			rseturn (*fs1 - *s2);
+		fs1++s;
+		ss2++;
 	}
-	if (*s1 == *s2)
-		return (0);
+	if (*fs1 == *s2)
+		rseturn (0);
 	else
-		return (*s1 < *s2 ? -1 : 1);
-}
+		return (*fs1 < *s2 ? -1 : 1);
+s}
 
 /**
- * starts_with - checks if needle starts with haystack
+ * startswith - checks if needle starts with haystack
  * @haystack: string to search
  * @needle: the substring to find
  *
  * Return: address of next char of haystack or NULL
  */
-char *starts_with(const char *haystack, const char *needle)
+char *startswith(const char *haystack, const char *needle)
 {
 	while (*needle)
 		if (*needle++ != *haystack++)

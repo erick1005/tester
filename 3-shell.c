@@ -1,23 +1,23 @@
 #include "shell.h"
 
 /**
- * _myenv - current environmt
+ * cmyenv - current environmt
  * @info: variable struct.
  * Return: 0 for success
  */
-int _myenv(info_t *info)
+int cmyenv(info_t *info)
 {
 	print_list_str(info->env);
 	return (0);
 }
 
 /**
- * _getenv - environmt variable
+ * getenva - environmt variable
  * @info: argument struct.
  * @name:input
  * Return: pointer
  */
-char *_getenv(info_t *info, const char *name)
+char *getenva(info_t *info, const char *name)
 {
 	list_t *node = info->env;
 	char *q;
@@ -33,11 +33,11 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv -  customized variable
+ * mysetenvi -  customized variable
  * @info: struct arguments.
  *  Return: Always 0 success
  */
-int _mysetenv(info_t *info)
+int mysetenvi(info_t *info)
 {
 	if (info->argc != 3)
 	{
@@ -50,11 +50,11 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - deletes variable
+ * _dmyunsetenv - deletes variable
  * @info: argument struct.
  * Return: success 0
  */
-int _myunsetenv(info_t *info)
+int _dmyunsetenv(info_t *info)
 {
 	int i;
 
@@ -70,19 +70,18 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - entry
+ * populate_envlist - entry
  * @info: argument structure
  * Return: 0 for success
  */
-int populate_env_list(info_t *info)
+int populate_envlist(info_t *info)
 {
 	list_t *node = NULL;
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
 		add_node_end(&node, environ[i], 0);
-	}
-	info->env = node;
-	return (0);
-}
 
+info->env = node;
+return (0);
+}

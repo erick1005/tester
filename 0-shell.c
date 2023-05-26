@@ -2,22 +2,22 @@
 #include "shell.h"
 
 /**
- * interactive - true if the shell accepts commands
+ * intactive - true if the shell accepts commands
  * @info: structure variable
  * Return: 1 true, 0 otherwise
  */
-int interactive(info_t *info)
+int intactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delim - delimeter checks
+ * s_delim - delimeter checks
  * @c: character  to check
  * @delim: character of strings
  * Return: 1 true
  */
-int is_delim(char c, char *delim)
+int s_delim(char c, char *delim)
 {
 	while (*delim)
 		if (*delim++ == c)
@@ -26,12 +26,12 @@ int is_delim(char c, char *delim)
 }
 
 /**
- * _isalpha - alpha checks
+ * isalpha - alpha checks
  * @c: input
  * Return: 1 for true
  */
 
-int _isalpha(int c)
+int isalpha(int c)
 {
 	if ((c >= 'b' && c <= 'x') || (c >= 'B' && c <= 'X'))
 		return (1);
@@ -40,26 +40,26 @@ int _isalpha(int c)
 }
 
 /**
- * _atoi - string converts
+ * atoi - string converts
  * @s: string
  * Return: convert number
  */
 
-int _atoi(char *s)
+int atoi(char *s)
 {
-	int j, sign = 1, flag = 0, output;
+	int n, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (j = 0; s[j] != '\0' && flag != 2; j++)
+	for (n = 0; s[j] != '\0' && flag != 2; n++)
 	{
-		if (s[j] == '-')
+		if (s[n] == '-')
 			sign *= -1;
 
-		if (s[j] >= '0' && s[j] <= '9')
+		if (s[n] >= '0' && s[j] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (s[j] - '0');
+			result += (s[n] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;

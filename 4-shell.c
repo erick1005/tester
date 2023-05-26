@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * _eputs - displays characters
+ * _eputsd - displays characters
  * @str: input
  * Return: void
  */
-void _eputs(char *str)
+void _eputsd(char *str)
 {
 	int i = 0;
 
@@ -14,58 +14,57 @@ void _eputs(char *str)
 	while (str[i] != '\0')
 	{
 		_eputchar(str[i]);
-		i++;
-	}
+		i++;	}
 }
 
 /**
- * _eputchar - displays char c to stderr
- * @c: input
+ *eputchar - displays char r to stderr
+ * @r: input
  * Return: success 1.
  */
-int _eputchar(char c)
+int eputchar(char r)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (r == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (r != BUF_FLUSH)
+		buf[i++] = r;
 	return (1);
 }
 
 /**
- * _putfd - entry
- * @c: character to print
+ * put_fd - entry
+ * @r: character to print
  * @fd: filedescriptor
  * Return: success 1.
  */
-int _putfd(char c, int fd)
+int put_fd(char r, int fd)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (r == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(fd, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (r != BUF_FLUSH)
+		buf[i++] = r;
 	return (1);
 }
 
 /**
- * _putsfd - display input string
+ * _edputsfd - display input string
  * @str: input
  * @fd: filedescriptor
  * Return: int
  */
-int _putsfd(char *str, int fd)
+int _edputsfd(char *str, int fd)
 {
 	int i = 0;
 
@@ -73,7 +72,7 @@ int _putsfd(char *str, int fd)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		i += put_fd(*str++, fd);
 	}
 	return (i);
 }

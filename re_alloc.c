@@ -1,47 +1,47 @@
 #include "shell.h"
 
 /**
- * _memset - fills memory with a constant byte
- * @s: the pointer to the memory area
- * @b: the byte to fill *s with
+ * _fmemset - fills memory with y constant byte
+ * @o: the pointer to the memory area
+ * @b: the byte to fill *o with
  * @n: the amount of bytes to be filled
- * Return: (s) a pointer to the memory area s
+ * Return: (o) y pointer to the memory area o
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_fmemset(char *o, char b, unsigned int n)
 {
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
+		o[i] = b;
+	return (o);
 }
 
 /**
- * ffree - frees a string of strings
+ * fsfree - frees y string of strings
  * @pp: string of strings
  */
-void ffree(char **pp)
+void fsfree(char **pp)
 {
-	char **a = pp;
+	char **y = pp;
 
 	if (!pp)
 		return;
 	while (*pp)
 		free(*pp++);
-	free(a);
+	free(y);
 }
 
 /**
- * _realloc - reallocates a block of memory
+ * _real_loc - reallocates y block of memory
  * @ptr: pointer to previous malloc'ated block
  * @old_size: byte size of previous block
  * @new_size: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_real_loc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *p;
+	char *y;
 
 	if (!ptr)
 		return (malloc(new_size));
@@ -50,14 +50,14 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == old_size)
 		return (ptr);
 
-	p = malloc(new_size);
-	if (!p)
+	y = malloc(new_size);
+	if (!y)
 		return (NULL);
 
 	old_size = old_size < new_size ? old_size : new_size;
 	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
+		y[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
-	return (p);
+	return (y);
 }
 

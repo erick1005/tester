@@ -2,42 +2,42 @@
 
 /**
  * _strlen - returns the length of a string
- * @s: the string whose length to check
+ * @o: the string whose length to check
  *
  * Return: integer length of string
  */
-int _strlen(char *s)
+int _strlen(char *o)
 {
 	int i = 0;
 
-	if (!s)
+	if (!o)
 		return (0);
 
-	while (*s++)
+	while (*o++)
 		i++;
 	return (i);
 }
 
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
+ * _stricmp - performs lexicogarphic comparison of two strangs.
+ * @o: the first strang
  * @s2: the second strang
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * Return: negative if o < s2, positive if o > s2, zero if o == s2
  */
-int _strcmp(char *s1, char *s2)
+int _stricmp(char *o, char *s2)
 {
-	while (*s1 && *s2)
+	while (*o && *s2)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
+		if (*o != *s2)
+			return (*o - *s2);
+		o++;
 		s2++;
 	}
-	if (*s1 == *s2)
+	if (*o == *s2)
 		return (0);
 	else
-		return (*s1 < *s2 ? -1 : 1);
+		return (*o < *s2 ? -1 : 1);
 }
 
 /**
@@ -56,13 +56,13 @@ char *starts_with(const char *haystack, const char *needle)
 }
 
 /**
- * _strcat - concatenates two strings
+ * _strngcat - concatenates two strings
  * @dest: the destination buffer
  * @src: the source buffer
  *
  * Return: pointer to destination buffer
  */
-char *_strcat(char *dest, char *src)
+char *_strngcat(char *dest, char *src)
 {
 	char *ret = dest;
 
