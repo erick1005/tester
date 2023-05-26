@@ -33,13 +33,23 @@ extern char **environ;
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
+/**
+ * struct builtin - input tables
+ * @type: variable
+ * @func: function entry
+ */
 typedef struct builtin
 {
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
 
-
+/**
+ * struct liststr - linked list
+ * @num: int variable
+ * @str: character string
+ * @next: upcomming node
+ */
 typedef struct liststr
 {
 	int num;
@@ -47,6 +57,27 @@ typedef struct liststr
 	struct liststr *next;
 } list_t;
 
+/**
+ * struct passinfo - argument elements variable
+ * @arg: character array from a function
+ * @argv: string array of arguments
+ * @path: path for the current command
+ * @argc: argument total
+ * @line_count: total error
+ * @err_num: exit error status
+ * @linecount_flag: input
+ * @fname: filename
+ * @env: linked list
+ * @environ: custom environ
+ * @history: history info
+ * @alias: aliases
+ * @env_changed: environ change
+ * @status: return status
+ * @cmd_buf: pointer to cmd_buf
+ * @cmd_buf_type: CMD_typ
+ * @readfd: fd of read input
+ * @histcount: history count
+ */
 typedef struct passinfo
 {
 	char *arg;
@@ -111,62 +142,71 @@ char *_stringcpy(char *, char *, int);
 char *_stringcat(char *, char *, int);
 char *_stringchar(char *, char);
 
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+/*realloc*/
+int is_cmd_f(info_t *info, char *path);
+char *dup_charc(char *pathstr, int start, int stop);
+char *find_path(info_t *info, char *pathstr, char *cmd);
 
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
 void sigintHandler(int);
 
-int bfree(void **);
+/*mem*/
+int b_free(void **);
 
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+/*strn*/
+int _strlen(char *o);
+int _stricmp(char *o, char *s2);
+char *starts_with(const char *haystack, const char *needle);
+char *_strngcat(char *dest, char *src);
 
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+/*strn1*/
+char *_stricpy(char *dest, char *src);
+char *_stridup(const char *str);
+void _putspr(char *str);
+int _putchars(char r);
 
 void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
-int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+/*par*/
+int is_cmd_f(info_t *info, char *path);
+char *dup_charc(char *pathstr, int start, int stop);
+char *find_path(info_t *info, char *pathstr, char *cmd);
 
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+/*tokenz*/
+char **strtow(char *str, char *d);
+char **stritow2(char *str, char d);
 
+/*var*/
+int is_chain(info_t *info, char *buf, size_t *y);
+void checks_chain(info_t *info, char *buf, size_t *y, size_t i, size_t len);
+int replace_aliass(info_t *info);
+int replaces_vars(info_t *info);
+int replaces_string(char **old, char *new);
 
-
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
-
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
+/*history*/
+char *get_histfile(info_t *info);
+int write_hist(info_t *info);
+int read_histf(info_t *info);
+int build_histlist(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
+
 /*2-shell */
 int myexit(info_t *);
 int mycd(info_t *);
 int _mychelp(info_t *);
 
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+/*shellop*/
+int mhsh(info_t *info, char **av);
+int finds_builtin(info_t *info);
+void find_cmd(info_t *info);
+void forks_cmd(info_t *info);
 
 int _myhistory(info_t *);
 int _myalias(info_t *);
+
 /*3-shell*/
 char *getenva(info_t *, const char *);
 int cmyenv(info_t *);
@@ -179,7 +219,5 @@ void _eputsd(char *);
 int eputchar(char *);
 int put_fd(char *, int *);
 int _edputsfd(char **, int *);
-
-
 
 #endif
