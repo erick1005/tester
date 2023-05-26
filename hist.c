@@ -11,14 +11,14 @@ char *get_histfile(info_t *info)
 {
 	char *buf, *dir;
 
-	dir = _getenv(info, "HOME=");
+	dir = getenv(info, "HOME=");
 	if (!dir)
 		return (NULL);
 	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
 	if (!buf)
 		return (NULL);
 	buf[0] = 0;
-	_strcpy(buf, dir);
+	_stricpy(buf, dir);
 	_strcat(buf, "/");
 	_strcat(buf, HIST_FILE);
 	return (buf);
@@ -45,8 +45,8 @@ int write_hist(info_t *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_putsfd(node->str, fd);
-		_putfd('\n', fd);
+		_edputsfd(node->str, fd);
+		put_fd('\n', fd);
 	}
 	_putfd(BUF_FLUSH, fd);
 	close(fd);
@@ -97,7 +97,7 @@ int read_histf(info_t *info)
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
+		dlte_node_at_index(&(info->history), 0);
 	renumber_history(info);
 	return (info->histcount);
 }
@@ -115,7 +115,7 @@ int build_histlist(info_t *info, char *buf, int linecount)
 
 	if (info->history)
 		node = info->history;
-	add_node_end(&node, buf, linecount);
+	addnode_end(&node, buf, linecount);
 
 	if (!info->history)
 		info->history = node;
