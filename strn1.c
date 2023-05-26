@@ -2,10 +2,9 @@
 
 /**
  * _stricpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * @dest: destination
+ * @src: source
+ * Return: pointer
  */
 char *_stricpy(char *dest, char *src)
 {
@@ -24,9 +23,8 @@ char *_stricpy(char *dest, char *src)
 
 /**
  * _stridup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * @str: src string
+ * Return: pointer
  */
 char *_stridup(const char *str)
 {
@@ -46,9 +44,8 @@ char *_stridup(const char *str)
 }
 
 /**
- * _putspr - prints an input string
- * @str: the string to be printed
- *
+ * _putspr - prints string
+ * @str: chars
  * Return: Nothing
  */
 void _putspr(char *str)
@@ -65,11 +62,9 @@ void _putspr(char *str)
 }
 
 /**
- * _putchars - writes the character r to stdout
- * @r: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putchars - writes r to stdout
+ * @r: character output
+ * Return: On success 1. -1 otherwise
  */
 int _putchars(char r)
 {
